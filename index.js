@@ -15,7 +15,12 @@ async function browser(user) {
     let page = n[0];
     await page.goto("https://twitch.tv/");
     await delay(2000);
-    await page.setCookie({ name: "auth-token", value: token.data.thingy });
+
+    await delay(2000);
+    await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.fJANQ > div:nth-child(1) > button")).click();
+    await delay(500);
+
+        await page.setCookie({ name: "auth-token", value: token.data.thingy });
     console.log(":3");
     await page.goto("https://twitch.tv/");
     await delay(2000);
@@ -23,9 +28,7 @@ async function browser(user) {
     if (vv) {
         await page.reload();
     }
-    await delay(2000);
-    await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.fJANQ > div:nth-child(1) > button")).click();
-    await delay(500);
+    await delay(1000)
     await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > nav > div > div.Layout-sc-1xcs6mc-0.kuGBVB > div > div > div > div > div.Layout-sc-1xcs6mc-0.jNIlkd > div > div.ScInputWrapper-sc-1fxjr4l-0.drBdyB.tw-combo-input__input > div > div > input")).type(user);
     await delay(2500);
     const elements = await page.$$(`[id^="search-result-row"]`);
