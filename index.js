@@ -4,8 +4,8 @@ import axios from "axios";
 import yes from "puppeteer-extra-plugin-stealth";
 let delay = (ms) => new Promise((r) => setTimeout(r, ms));
 puppeteer.default.use(yes());
-async function browser(user) {
-    await delay(randomInt(30000, 300000));
+async function browser() {
+    await delay(randomInt(1, 5));
     const browser = await puppeteer.default.launch({
         headless: false,
         args: ["--no-sandbox"],
@@ -15,6 +15,7 @@ async function browser(user) {
     let page = n[0];
     await page.goto("https://twitch.tv/");
     await delay(2000);
+    const user = token.data.join;
     await page.setCookie({ name: "auth-token", value: token.data.thingy });
     console.log(":3");
     await page.goto("https://twitch.tv/");
@@ -37,4 +38,4 @@ async function browser(user) {
     await elements[elements.length - 1].click();
     console.log(await page.url());
 }
-browser("Vezqux");
+browser();
