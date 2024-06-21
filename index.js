@@ -37,4 +37,4 @@ async function browser(user) {
     await elements[elements.length - 1].click();
     console.log(await page.url());
 }
-browser("ducky6__9");
+browser("Vezqux");
