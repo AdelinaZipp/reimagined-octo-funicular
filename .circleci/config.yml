@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Build an artifact
-          command: lsb_release -a
+          command: sudo apt update && sudo apt install xvfb -y && npm ci && xvfb-run node index.js
 workflows:
   my-workflow:
     jobs:
