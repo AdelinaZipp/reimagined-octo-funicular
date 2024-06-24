@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: cimg/node:22.3.0
+    parallelism: 20
     steps:
       - checkout
       - run:
