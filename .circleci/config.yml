@@ -8,5 +8,10 @@ jobs:
       - checkout
       - run:
           name: Build an artifact
-          command: node --version
-
+          command: npm ci && xvfb-run node index.js
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context:
+            - MEOW
