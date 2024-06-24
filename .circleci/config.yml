@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Build an artifact
-          command: sudo apt update && sudo apt install xvfb -y && npm ci && xvfb-run node index.js
+          command: sudo apt update && sudo apt install xvfb chromium-browser -y && npm ci && xvfb-run node index.js
 workflows:
   my-workflow:
     jobs:
