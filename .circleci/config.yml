@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: cimg/node:22.3.0
     parallelism: 20
+    resource_class: medium
     steps:
       - checkout
       - run:
