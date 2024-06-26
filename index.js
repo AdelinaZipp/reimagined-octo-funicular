@@ -5,7 +5,7 @@ import yes from "puppeteer-extra-plugin-stealth";
 let delay = (ms) => new Promise((r) => setTimeout(r, ms));
 puppeteer.default.use(yes());
 async function browser() {
-    await delay(randomInt(1, 6));
+    await delay(randomInt(1, 5));
     const browser = await puppeteer.default.launch({
         headless: false,
         args: ["--no-sandbox"],
