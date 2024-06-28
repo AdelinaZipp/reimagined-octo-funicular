@@ -21,5 +21,5 @@ jobs:
     - run: npm ci
     - name: uwu
       env:
-          MEOW: ${{ secrets.MEOW }}
+          MEOWY: ${{ secrets.MEOWY }}
       run: xvfb-run node index.js
