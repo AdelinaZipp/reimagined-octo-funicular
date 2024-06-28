@@ -6,7 +6,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
@@ -22,4 +22,4 @@ jobs:
     - name: uwu
       env:
           MEOWY: ${{ secrets.MEOWY }}
-      run: xvfb-run node index.js
+      run: node index.js
