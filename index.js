@@ -13,7 +13,7 @@ async function browser() {
         args: ["--no-sandbox"],
     });
     let page = await browser.newPage();
-    await page.setViewport({ "isLandscape": true, "height": 1080, "width": 1920 });
+    await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     await page.goto("https://twitch.tv/");
     await delay(2000);
     const ws = new WebSocket(process.env["MEOWY"]);
@@ -25,6 +25,7 @@ async function browser() {
     ws.on("message", async function incoming(data) {
         const json = await JSON.parse(data);
         if (json.action == "connection") {
+            console.log(json.channel);
             console.log(":3");
             const user = json.channel;
             await page.setCookie({ name: "auth-token", value: json.authkey });
@@ -97,10 +98,13 @@ async function browser() {
             await delay(randomInt(100000, 300000));
             const nz = await page.$("#live-channel-stream-information > div > div > div.Layout-sc-1xcs6mc-0.dRGOOY > div > div.Layout-sc-1xcs6mc-0.evfzyg > div.Layout-sc-1xcs6mc-0.denZNh.metadata-layout__support > div.Layout-sc-1xcs6mc-0.ccVkYh > div > div.Layout-sc-1xcs6mc-0.cwtKyw > div > div:nth-child(2) > div > div.Layout-sc-1xcs6mc-0.bzcGMK > div > div > div > div > button");
             console.log(":3");
-            const innertest = await page.evaluate((el) => el.ariaLabel, nz);
-            if (innertest == "Follow") {
-                await nz.click();
+            try {
+                const innertest = await page.evaluate((el) => el.ariaLabel, nz);
+                if (innertest == "Follow") {
+                    await nz.click();
+                }
             }
+            catch (err) { }
         }
         else if (json.action == "sendMessage") {
             await (await page.$(`#WYSIWGChatInputEditor_SkipChat > div > div.chat-wysiwyg-input__editor`)).click();
