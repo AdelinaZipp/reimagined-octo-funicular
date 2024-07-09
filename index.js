@@ -60,6 +60,7 @@ async function browser() {
             }
             catch (err) {
                 console.log("cwick fail");
+                console.error(err)
             }
             await delay(10000);
             await page.screenshot({ "path": "./uwu.png" });
