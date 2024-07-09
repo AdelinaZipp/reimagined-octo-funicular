@@ -28,8 +28,14 @@ async function browser() {
     });
     let page = (await browser.pages())[0];
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
-    await page.goto("https://twitch.tv/");
+    try {
+        await page.goto("https://twitch.tv/");
+    }
+    catch (err) {
+        console.log(":c");
+    }
     await delay(2000);
+    console.log("meow!!!");
     const ws = new WebSocket(process.env["MEOWY"]);
     ws.on("open", function open() {
         setInterval(() => {
