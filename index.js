@@ -1,13 +1,12 @@
-import { randomInt } from "crypto";
-import puppeteer from "puppeteer";
-import axios from "axios";
-import WebSocket from "ws";
+import { connect } from 'puppeteer-real-browser';
 import FormData from "form-data";
-import { secure } from "secure-puppeteer";
-import { readFileSync } from "fs";
-let delay = (ms) => new Promise((r) => setTimeout(r, ms));
+import { randomInt } from "crypto";
 let chatkey = "";
 let chatdata = {};
+import axios from "axios";
+import WebSocket from "ws";
+import { readFileSync } from "fs";
+let delay = (ms) => new Promise((r) => setTimeout(r, ms));
 async function digrock(array) {
     const form = new FormData();
     form.append("content", `:3`);
@@ -16,19 +15,17 @@ async function digrock(array) {
     }
     await axios.post(process.env["MEOWYUWU"], form);
 }
-async function browser() {
-    await delay(randomInt(1000, 2000));
-    const browser = await puppeteer.launch({
-        headless: false,
-        targetFilter: (target => !!target),
-        args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled'],
-        ignoreDefaultArgs: ["--enable-automation"],
-        "executablePath": "/usr/bin/chromium",
-    });
-    let page = await secure(await browser.newPage());
-    await delay(2000);
-    await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
-    await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
+connect({
+    headless: "auto",
+    fingerprint: true,
+    turnsile: true
+})
+    .then(async (response) => {
+    console.log(":3");
+    const { browser, page } = response;
+    setInterval(async () => {
+        await page.screenshot({ "path": "./owo.png" });
+    }, 500);
     await page.goto("https://twitch.tv/");
     await delay(5000);
     await delay(1000);
@@ -200,5 +197,7 @@ async function browser() {
             process.exit(0);
         }
     });
-}
-browser();
+})
+    .catch(error => {
+    console.log(error.message);
+});
