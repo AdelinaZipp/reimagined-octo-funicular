@@ -16,12 +16,14 @@ async function digrock(array) {
     await axios.post(process.env["MEOWYUWU"], form);
 }
 async function browser() {
-    await delay(randomInt(1000, 10000));
+    await delay(randomInt(1000, 2000));
     const browser = await puppeteer.default.launch({
         headless: false,
         targetFilter: (target => !!target),
         args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled', "--auto-open-devtools-for-tabs"],
         ignoreDefaultArgs: ["--enable-automation"],
+        "executablePath": "/usr/bin/chromium",
+        slowMo: 1000,
     });
     let page = (await browser.pages())[0];
     await delay(2000);
