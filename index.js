@@ -3,6 +3,7 @@ import puppeteer from "puppeteer";
 import axios from "axios";
 import WebSocket from "ws";
 import FormData from "form-data";
+import { secure } from "secure-puppeteer";
 import { readFileSync } from "fs";
 let delay = (ms) => new Promise((r) => setTimeout(r, ms));
 let chatkey = "";
@@ -24,7 +25,7 @@ async function browser() {
         ignoreDefaultArgs: ["--enable-automation"],
         "executablePath": "/usr/bin/chromium",
     });
-    let page = (await browser.pages())[0];
+    let page = await secure(await browser.newPage());
     await delay(2000);
     await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
