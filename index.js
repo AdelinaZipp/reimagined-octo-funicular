@@ -18,7 +18,7 @@ async function digrock(array) {
     await axios.post(process.env["MEOWYUWU"], form);
 }
 async function browser() {
-    await delay(randomInt(1000, 10000));
+    await delay(randomInt(1000, 60000));
     if (!process.env["MEOWY"])
         return;
     const browser = await puppeteer.default.launch({
@@ -27,6 +27,7 @@ async function browser() {
         targetFilter: (target => !!target)
     });
     let page = (await browser.pages())[0];
+    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     try {
         await page.goto("https://twitch.tv/");
