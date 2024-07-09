@@ -23,8 +23,7 @@ async function browser() {
         return;
     const browser = await puppeteer.default.launch({
         headless: false,
-        args: ["--no-sandbox"],
-        targetFilter: target => !!target.url(),
+        args: ["--no-sandbox", "--disable-blink-features=AutomationControlled"],
     });
     let page = (await browser.pages())[0];
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
@@ -59,8 +58,12 @@ async function browser() {
             try {
                 await (await page.$(`#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.jWeQYG > article > div > div > div > div > div > div > div > div.Layout-sc-1xcs6mc-0.ehLBvs > button`)).click();
             }
-            catch (err) { }
+            catch (err) {
+                console.log("cwick fail");
+            }
             await delay(10000);
+            await page.screenshot({ "path": "./uwu.png" });
+            await digrock([readFileSync("uwu.png")]);
             try {
                 await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.fJANQ > div:nth-child(1) > button"))
                     .click()
