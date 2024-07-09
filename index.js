@@ -16,7 +16,7 @@ async function digrock(array) {
     await axios.post(process.env["MEOWYUWU"], form);
 }
 connect({
-    headless: "auto",
+    headless: false,
     fingerprint: true,
     turnsile: true
 })
