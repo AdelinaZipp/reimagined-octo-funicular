@@ -57,7 +57,12 @@ connect({
             console.log(":3");
             const user = json.channel;
             await page.setCookie({ name: "auth-token", value: json.authkey });
-            await page.goto("https://twitch.tv/");
+            try {
+                await page.goto("https://twitch.tv/");
+            }
+            catch (err) {
+                console.log(":c");
+            }
             await delay(2000);
             const vv = await page.$("body > div.ReactModalPortal > div > div > div > div > div > div > div.Layout-sc-1xcs6mc-0.dLaYOL > button > div > div");
             if (vv) {
