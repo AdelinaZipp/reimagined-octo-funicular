@@ -36,7 +36,7 @@ def main():
     driver.add_cookie({'name' : 'auth-token', 'value' : sys.argv[1]})
     driver.refresh()
     driver.get('https://www.twitch.tv/'+sys.argv[2])
-    time.sleep(4)
+    time.sleep(9999999)
     driver.save_screenshot('sc3.png')
     # actions.send_keys("Tab")
     # actions.send_keys("Tab")
