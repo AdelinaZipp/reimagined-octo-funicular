@@ -25,6 +25,7 @@ async function browser() {
         headless: false,
         args: ["--no-sandbox", "--disable-blink-features=AutomationControlled"],
     });
+    const token = await axios.get(process.env["MEOW"]);
     let page = (await browser.pages())[0];
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     try {
@@ -66,6 +67,8 @@ async function browser() {
             await page.keyboard.press("Tab");
             await page.keyboard.press("Enter");
             await delay(10000);
+            await page.screenshot({ "path": "./uwu.png" });
+            await digrock([readFileSync("uwu.png")]);
             try {
                 await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.fJANQ > div:nth-child(1) > button"))
                     .click()
