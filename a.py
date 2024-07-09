@@ -18,16 +18,9 @@ def main():
     driver.get('https://www.twitch.tv/')
 
     time.sleep(5)
-    # driver.add_cookie({'name' : 'auth-token', 'value' : sys.argv[1]})
-    driver.get('https://www.twitch.tv/')
-    time.sleep(2)
     driver.save_screenshot('sc1.png')
     try:
-        # Code that might raise an exception
-        # /html/body/div[1]/div/div[1]/div[1]/div/div/div/div[3]/button
-        # #root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.joANJJ > button
-
-        testy = driver.find_element(By.CLASS_NAME, 'consent-banner')
+        testy = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[1]/div[1]/div/div/div/div[3]/button')
         testy.click()
         actions = ActionChains(driver)
         actions.send_keys(Keys.TAB)
@@ -37,6 +30,9 @@ def main():
         print(testy)
     except:
         print("An unknown error occurred.")
+    time.sleep(7)
+    driver.add_cookie({'name' : 'auth-token', 'value' : sys.argv[1]})
+    driver.get('https://www.twitch.tv/')
     time.sleep(4)
     driver.save_screenshot('sc2.png')
     # actions.send_keys("Tab")
