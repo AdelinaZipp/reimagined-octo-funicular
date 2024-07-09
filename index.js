@@ -24,8 +24,9 @@ async function browser() {
     const browser = await puppeteer.default.launch({
         headless: false,
         args: ["--no-sandbox"],
+        targetFilter: target => !!target.url(),
     });
-    let page = await browser.newPage();
+    let page = (await browser.pages())[0];
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     await page.goto("https://twitch.tv/");
     await delay(2000);
