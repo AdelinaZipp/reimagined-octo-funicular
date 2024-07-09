@@ -19,6 +19,7 @@ jobs:
         node-version: 22.x
         cache: 'npm'
     - run: npm ci
+    - run: pip install undetected-chromedriver
     - name: uwu
       env:
           MEOWY: ${{ secrets.MEOWY }}
