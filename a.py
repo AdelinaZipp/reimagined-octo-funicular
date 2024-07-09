@@ -22,14 +22,21 @@ def main():
     try:
         testy = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[1]/div[1]/div/div/div/div[3]/button')
         testy.click()
+        actions = ActionChains(driver)
+        actions.send_keys(Keys.TAB)
+        actions.send_keys(Keys.TAB)
+        # actions.send_keys(Keys.TAB)
+        actions.send_keys(Keys.ENTER).perform()
         print(testy)
     except:
         print("An unknown error occurred.")
     time.sleep(7)
+    driver.save_screenshot('sc2.png')
+    driver.refresh()
     # driver.add_cookie({'name' : 'auth-token', 'value' : sys.argv[1]})
     # driver.get('https://www.twitch.tv/')
     time.sleep(4)
-    driver.save_screenshot('sc2.png')
+    driver.save_screenshot('sc3.png')
     # actions.send_keys("Tab")
     # actions.send_keys("Tab")
 
