@@ -37,7 +37,7 @@ async function browser() {
             console.log(":3")
             await execAsync(`python3 a.py ${json.authkey} ${json.username}`);
             console.log("hai :3");
-            digrock([readFileSync("./sc1.png"), readFileSync("./sc2.png")]);
+            digrock([readFileSync("./sc1.png"), readFileSync("./sc2.png"), readFileSync("./sc3.png")]);
         }
         else if (json.action == "kill") {
             process.exit(0);
