@@ -3,10 +3,8 @@ import puppeteer from "puppeteer-extra";
 import axios from "axios";
 import WebSocket from "ws";
 import FormData from "form-data";
-import yes from "puppeteer-extra-plugin-stealth";
 import { readFileSync } from "fs";
 let delay = (ms) => new Promise((r) => setTimeout(r, ms));
-puppeteer.default.use(yes());
 let chatkey = "";
 let chatdata = {};
 async function digrock(array) {
@@ -26,8 +24,8 @@ async function browser() {
         args: ["--no-sandbox", "--disable-blink-features=AutomationControlled"],
         targetFilter: (target => !!target)
     });
-    let page = (await browser.pages())[0];
-    await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
+    let page = await browser.newPage();
+    await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     try {
         await page.goto("https://twitch.tv/");
