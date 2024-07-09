@@ -18,9 +18,9 @@ jobs:
       with:
         node-version: 22.x
         cache: 'npm'
-    - run: npm install
+    - run: npm ci
     - name: uwu
       env:
           MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
-      run: node index.js
+      run: node test.js
