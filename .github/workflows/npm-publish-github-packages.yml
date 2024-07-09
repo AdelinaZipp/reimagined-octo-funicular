@@ -21,6 +21,6 @@ jobs:
     - run: npm ci
     - name: uwu
       env:
-          MEOW: ${{ secrets.MEOW }}
+          MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
       run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" node index.js
