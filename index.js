@@ -1,5 +1,5 @@
 import { randomInt } from "crypto";
-import puppeteer from "puppeteer-extra";
+import puppeteer from "puppeteer";
 import axios from "axios";
 import WebSocket from "ws";
 import FormData from "form-data";
@@ -17,13 +17,12 @@ async function digrock(array) {
 }
 async function browser() {
     await delay(randomInt(1000, 2000));
-    const browser = await puppeteer.default.launch({
+    const browser = await puppeteer.launch({
         headless: false,
         targetFilter: (target => !!target),
-        args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled', "--auto-open-devtools-for-tabs"],
+        args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled'],
         ignoreDefaultArgs: ["--enable-automation"],
         "executablePath": "/usr/bin/chromium",
-        slowMo: 1000,
     });
     let page = (await browser.pages())[0];
     await delay(2000);
