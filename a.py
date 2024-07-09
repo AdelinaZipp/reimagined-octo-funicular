@@ -22,13 +22,19 @@ driver.add_cookie({'name' : 'auth-token', 'value' : sys.argv[1]})
 driver.get('https://www.twitch.tv/')
 time.sleep(2)
 driver.save_screenshot('sc1.png')
-testy = driver.find_element(By.CLASS_NAME, 'consent-banner')
-testy.click()
-actions = ActionChains(driver)
-actions.send_keys(Keys.TAB)
-actions.send_keys(Keys.TAB)
-actions.send_keys(Keys.TAB)
-actions.send_keys(Keys.ENTER).perform()
+try:
+    # Code that might raise an exception
+
+
+    testy = driver.find_element(By.CLASS_NAME, 'consent-banner')
+    testy.click()
+    actions = ActionChains(driver)
+    actions.send_keys(Keys.TAB)
+    actions.send_keys(Keys.TAB)
+    actions.send_keys(Keys.TAB)
+    actions.send_keys(Keys.ENTER).perform()
+except:
+    print("An unknown error occurred.")
 time.sleep(4)
 driver.save_screenshot('sc2.png')
 # actions.send_keys("Tab")
