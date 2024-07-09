@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: 20.x
         cache: 'npm'
-    - run: npm ci
+    - run: npm install
     - run: pip install undetected-chromedriver
     - name: uwu
       env:
