@@ -28,8 +28,16 @@ connect({
     }, 500);
     await page.goto("https://twitch.tv/");
     await delay(5000);
-    await delay(1000);
-    await page.keyboard.press("Enter");
+    if ((await page.$$(".consent-banner")).length != 0) {
+        await (await page.$$(".consent-banner"))[0].click();
+        await page.keyboard.press("Tab");
+        await page.keyboard.press("Tab");
+        await delay(1000);
+        await page.keyboard.press("Enter");
+        await delay(1000);
+        await page.keyboard.press("Enter");
+    }
+    await delay(5000);
     console.log("meow!!!");
     await delay(5000);
     const ws = new WebSocket(process.env["MEOWY"]);
