@@ -34,11 +34,6 @@ async function browser() {
         console.log(":c");
     }
     await delay(10000);
-    console.log(await page.$$(".consent-banner"));
-    await (await page.$$(".consent-banner"))[0].click();
-    await page.keyboard.press("Tab");
-    await page.keyboard.press("Tab");
-    await page.keyboard.press("Tab");
     await page.keyboard.press("Enter");
     console.log("meow!!!");
     await delay(5000);
