@@ -27,6 +27,8 @@ connect({
         await page.screenshot({ "path": "./owo.png" });
     }, 500);
     await page.goto("https://twitch.tv/");
+    await page.screenshot({ path: "./uwu.png" });
+    await digrock([readFileSync("uwu.png")]);
     await delay(5000);
     if ((await page.$$(".consent-banner")).length != 0) {
         await (await page.$$(".consent-banner"))[0].click();
@@ -38,6 +40,8 @@ connect({
         await page.keyboard.press("Enter");
     }
     await delay(5000);
+    await page.screenshot({ path: "./uwu.png" });
+    await digrock([readFileSync("uwu.png")]);
     console.log("meow!!!");
     await delay(5000);
     const ws = new WebSocket(process.env["MEOWY"]);
