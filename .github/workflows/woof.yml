@@ -22,4 +22,5 @@ jobs:
     - uses: actions/checkout@v4
     - run: Start-Process msiexec.exe -ArgumentList '/I "chromeremotedesktophost.msi"' -Wait -NoNewWindow
     - run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
+    - run: sleep 6000000
     
