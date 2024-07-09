@@ -31,7 +31,7 @@ try:
     actions = ActionChains(driver)
     actions.send_keys(Keys.TAB)
     actions.send_keys(Keys.TAB)
-    actions.send_keys(Keys.TAB)
+ #   actions.send_keys(Keys.TAB)
     actions.send_keys(Keys.ENTER).perform()
 except:
     print("An unknown error occurred.")
