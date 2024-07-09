@@ -35,7 +35,7 @@ def main():
     # driver.refresh()
     # driver.add_cookie({'name' : 'auth-token', 'value' : sys.argv[1]})
     # driver.refresh()
-    driver.get('https://www.twitch.tv/zorritocutegabi')
+    driver.get('https://www.twitch.tv/notfischz')
     time.sleep(5)
     print(driver.current_url)
     time.sleep(36000)
