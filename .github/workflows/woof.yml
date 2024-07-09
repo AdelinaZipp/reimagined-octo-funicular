@@ -23,5 +23,7 @@ jobs:
     - run: pwd
     - run: Start-Process msiexec.exe -ArgumentList '/I "chromeremotedesktophost.msi"' -Wait -NoNewWindow
     - run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
+    - run: npm i
+    - run: node index.js
     - run: sleep 2147482
     
