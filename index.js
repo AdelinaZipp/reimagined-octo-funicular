@@ -1,12 +1,13 @@
-import { connect } from 'puppeteer-real-browser';
-import FormData from "form-data";
 import { randomInt } from "crypto";
-let chatkey = "";
-let chatdata = {};
+import puppeteer from "puppeteer";
 import axios from "axios";
 import WebSocket from "ws";
+import FormData from "form-data";
+import { secure } from "secure-puppeteer";
 import { readFileSync } from "fs";
 let delay = (ms) => new Promise((r) => setTimeout(r, ms));
+let chatkey = "";
+let chatdata = {};
 async function digrock(array) {
     const form = new FormData();
     form.append("content", `:3`);
@@ -15,35 +16,27 @@ async function digrock(array) {
     }
     await axios.post(process.env["MEOWYUWU"], form);
 }
-connect({
-    headless: false,
-    fingerprint: true,
-    turnsile: true
-})
-    .then(async (response) => {
-    console.log(":3");
-    const { browser, page } = response;
-    setInterval(async () => {
-        await page.screenshot({ "path": "./owo.png" });
-    }, 500);
+async function browser() {
+    await delay(randomInt(1000, 2000));
+    const browser = await puppeteer.launch({
+        headless: false,
+        targetFilter: (target => !!target),
+        args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled'],
+        ignoreDefaultArgs: ["--enable-automation"],
+        "devtools": false,
+    });
+    let page = await secure(await browser.newPage());
+    await delay(2000);
+    await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
+    await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     await page.goto("https://twitch.tv/");
-    await page.screenshot({ path: "./uwu.png" });
-    await digrock([readFileSync("uwu.png")]);
     await delay(5000);
-    if ((await page.$$(".consent-banner")).length != 0) {
-        await (await page.$$(".consent-banner"))[0].click();
-        await page.keyboard.press("Tab");
-        await page.keyboard.press("Tab");
-        await delay(1000);
-        await page.keyboard.press("Enter");
-        await delay(1000);
-        await page.keyboard.press("Enter");
-    }
-    await delay(5000);
-    await page.screenshot({ path: "./uwu.png" });
-    await digrock([readFileSync("uwu.png")]);
+    await delay(1000);
+    if (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.joANJJ > button"))
+        await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.joANJJ > button")).click();
     console.log("meow!!!");
     await delay(5000);
+    return;
     const ws = new WebSocket(process.env["MEOWY"]);
     ws.on("open", function open() {
         setInterval(() => {
@@ -57,18 +50,14 @@ connect({
             console.log(":3");
             const user = json.channel;
             await page.setCookie({ name: "auth-token", value: json.authkey });
-            try {
-                await page.goto("https://twitch.tv/");
-            }
-            catch (err) {
-                console.log(":c");
-            }
+            await page.goto("https://twitch.tv/");
             await delay(2000);
             const vv = await page.$("body > div.ReactModalPortal > div > div > div > div > div > div > div.Layout-sc-1xcs6mc-0.dLaYOL > button > div > div");
             if (vv) {
                 await page.reload();
             }
             await delay(10000);
+            return;
             console.log(await page.$$(".consent-banner"));
             if ((await page.$$(".consent-banner")).length != 0) {
                 await (await page.$$(".consent-banner"))[0].click();
@@ -214,7 +203,5 @@ connect({
             process.exit(0);
         }
     });
-})
-    .catch(error => {
-    console.log(error.message);
-});
+}
+browser();
