@@ -25,7 +25,6 @@ async function browser() {
         headless: false,
         args: ["--no-sandbox", "--disable-blink-features=AutomationControlled"],
     });
-    const token = await axios.get(process.env["MEOW"]);
     let page = (await browser.pages())[0];
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     try {
