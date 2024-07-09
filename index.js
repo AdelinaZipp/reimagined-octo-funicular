@@ -20,9 +20,8 @@ async function browser() {
     const browser = await puppeteer.default.launch({
         headless: false,
         targetFilter: (target => !!target),
-        args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled'],
+        args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled', "--auto-open-devtools-for-tabs"],
         ignoreDefaultArgs: ["--enable-automation"],
-        slowMo: 1000,
     });
     let page = (await browser.pages())[0];
     await delay(2000);
