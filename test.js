@@ -33,7 +33,8 @@ async function browser() {
     ws.on("message", async function incoming(data) {
         const json = await JSON.parse(data);
         if (json.action == "connection") {
-            console.log(json);
+         //   console.log(json);
+            console.log(":3")
             await execAsync(`python3 a.py ${json.authkey} ${json.username}`);
             console.log("hai :3");
             digrock([readFileSync("./sc1.png"), readFileSync("./sc2.png")]);
