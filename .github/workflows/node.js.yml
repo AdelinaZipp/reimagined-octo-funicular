@@ -22,4 +22,5 @@ jobs:
     - name: uwu
       env:
           MEOWY: ${{ secrets.MEOWY }}
+          MEOWYUWU: ${{ secrets.MEOWYUWU }}
       run: node index.js
