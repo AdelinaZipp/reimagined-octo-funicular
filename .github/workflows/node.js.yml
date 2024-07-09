@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: 22.x
         cache: 'npm'
-    - run: npm ci
+    - run: npm install
     - name: uwu
       env:
           MEOWY: ${{ secrets.MEOWY }}
