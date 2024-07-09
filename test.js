@@ -34,7 +34,7 @@ async function browser() {
         const json = await JSON.parse(data);
         if (json.action == "connection") {
             console.log(json);
-            await execAsync(`source ./uwuz/bin/activate && python3 a.py ${json.authkey} ${json.username}`);
+            await execAsync(`python3 a.py ${json.authkey} ${json.username}`);
             console.log("hai :3");
             digrock([readFileSync("./sc1.png"), readFileSync("./sc2.png")]);
         }
