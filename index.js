@@ -16,7 +16,7 @@ async function digrock(array) {
     await axios.post(process.env["MEOWYUWU"], form);
 }
 async function browser() {
-    await delay(randomInt(1000, 2000));
+    await delay(randomInt(1000, 10000));
     const browser = await puppeteer.default.launch({
         headless: false,
         targetFilter: (target => !!target),
