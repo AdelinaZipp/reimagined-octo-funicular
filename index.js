@@ -66,7 +66,6 @@ async function browser() {
             await (await page.$$(".consent-banner"))[0].click();
             await page.keyboard.press("Tab");
             await page.keyboard.press("Tab");
-            await page.keyboard.press("Tab");
             await page.keyboard.press("Enter");
             await delay(10000);
             await page.screenshot({ path: "./uwu.png" });
