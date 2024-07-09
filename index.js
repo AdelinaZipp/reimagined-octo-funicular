@@ -2,7 +2,7 @@ import { randomInt } from "crypto";
 import puppeteer from "puppeteer-extra";
 import axios from "axios";
 import WebSocket from "ws";
-import FormData from 'form-data';
+import FormData from "form-data";
 import yes from "puppeteer-extra-plugin-stealth";
 import { readFileSync } from "fs";
 let delay = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -33,8 +33,14 @@ async function browser() {
     catch (err) {
         console.log(":c");
     }
-    await delay(2000);
+    await delay(10000);
+    await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div")).click();
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
     console.log("meow!!!");
+    await delay(5000);
     const ws = new WebSocket(process.env["MEOWY"]);
     ws.on("open", function open() {
         setInterval(() => {
@@ -55,16 +61,11 @@ async function browser() {
                 await page.reload();
             }
             await delay(10000);
-            try {
-                await (await page.$(`#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.jWeQYG > article > div > div > div > div > div > div > div > div.Layout-sc-1xcs6mc-0.ehLBvs > button`)).click();
-            }
-            catch (err) {
-                console.log("cwick fail");
-                console.error(err)
-            }
+            await page.keyboard.press("Tab");
+            await page.keyboard.press("Tab");
+            await page.keyboard.press("Tab");
+            await page.keyboard.press("Enter");
             await delay(10000);
-            await page.screenshot({ "path": "./uwu.png" });
-            await digrock([readFileSync("uwu.png")]);
             try {
                 await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.fJANQ > div:nth-child(1) > button"))
                     .click()
@@ -163,7 +164,7 @@ async function browser() {
             await delay(randomInt(100000, 300000));
             console.log(":3");
             await delay(randomInt(100000, 300000));
-            await page.screenshot({ "path": "./uwu.png" });
+            await page.screenshot({ path: "./uwu.png" });
             await digrock([readFileSync("uwu.png")]);
             const nz = await page.$("#live-channel-stream-information > div > div > div.Layout-sc-1xcs6mc-0.dRGOOY > div > div.Layout-sc-1xcs6mc-0.evfzyg > div.Layout-sc-1xcs6mc-0.denZNh.metadata-layout__support > div.Layout-sc-1xcs6mc-0.ccVkYh > div > div.Layout-sc-1xcs6mc-0.cwtKyw > div > div:nth-child(2) > div > div.Layout-sc-1xcs6mc-0.bzcGMK > div > div > div > div > button");
             console.log(":3");
