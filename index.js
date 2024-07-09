@@ -55,12 +55,12 @@ async function browser() {
             if (vv) {
                 await page.reload();
             }
-            await delay(4000);
+            await delay(10000);
             try {
                 await (await page.$(`#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.jWeQYG > article > div > div > div > div > div > div > div > div.Layout-sc-1xcs6mc-0.ehLBvs > button`)).click();
             }
             catch (err) { }
-            await delay(2000);
+            await delay(10000);
             try {
                 await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.fJANQ > div:nth-child(1) > button"))
                     .click()
