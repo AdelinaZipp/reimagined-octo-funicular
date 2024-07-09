@@ -16,24 +16,20 @@ async function digrock(array) {
     await axios.post(process.env["MEOWYUWU"], form);
 }
 async function browser() {
-    await delay(randomInt(1000, 60000));
-    if (!process.env["MEOWY"])
-        return;
+    await delay(randomInt(1000, 2000));
     const browser = await puppeteer.default.launch({
         headless: false,
-        args: ["--no-sandbox", "--disable-blink-features=AutomationControlled"],
-        targetFilter: (target => !!target)
+        targetFilter: (target => !!target),
+        args: ['--disable-features=IsolateOrigins,site-per-process', '--disable-blink-features=AutomationControlled'],
+        slowMo: 1000,
     });
-    let page = await browser.newPage();
+    let page = (await browser.pages())[0];
+    await delay(2000);
     await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
     await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
-    try {
-        await page.goto("https://twitch.tv/");
-    }
-    catch (err) {
-        console.log(":c");
-    }
-    await delay(10000);
+    await page.goto("https://twitch.tv/");
+    await delay(5000);
+    await delay(1000);
     await page.keyboard.press("Enter");
     console.log("meow!!!");
     await delay(5000);
