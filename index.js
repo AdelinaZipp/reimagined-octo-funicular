@@ -26,7 +26,6 @@ async function browser() {
     let page = (await browser.pages())[0];
     await delay(2000);
     await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36");
-    await page.setViewport({ isLandscape: true, height: 1080, width: 1920 });
     await page.goto("https://twitch.tv/");
     await delay(5000);
     await delay(1000);
