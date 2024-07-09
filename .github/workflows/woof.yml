@@ -1,0 +1,25 @@
+name: Node.js CI-3
+
+on:
+  workflow_dispatch:
+    inputs:
+      authcode:
+        description: 'CRD Code'
+        required: true
+      pincode:
+        description: '6 digit PIN'
+        required: true
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        node-version: [1]
+    steps:
+    - uses: actions/checkout@v4
+    - run: Start-Process msiexec.exe -ArgumentList '/I "chromeremotedesktophost.msi"' -Wait -NoNewWindow
+    - run: ${{ github.event.inputs.authcode }}
+    
