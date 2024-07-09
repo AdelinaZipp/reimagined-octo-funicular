@@ -34,7 +34,8 @@ async function browser() {
         console.log(":c");
     }
     await delay(10000);
-    await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div")).click();
+    console.log(await page.$$(".consent-banner"));
+    await (await page.$$(".consent-banner"))[0].click();
     await page.keyboard.press("Tab");
     await page.keyboard.press("Tab");
     await page.keyboard.press("Tab");
@@ -61,12 +62,14 @@ async function browser() {
                 await page.reload();
             }
             await delay(10000);
+            console.log(await page.$$(".consent-banner"));
+            await (await page.$$(".consent-banner"))[0].click();
             await page.keyboard.press("Tab");
             await page.keyboard.press("Tab");
             await page.keyboard.press("Tab");
             await page.keyboard.press("Enter");
             await delay(10000);
-            await page.screenshot({ "path": "./uwu.png" });
+            await page.screenshot({ path: "./uwu.png" });
             await digrock([readFileSync("uwu.png")]);
             try {
                 await (await page.$("#root > div > div.Layout-sc-1xcs6mc-0.lcpZLv > div.Layout-sc-1xcs6mc-0.gUvyVO > div > div > div > div.Layout-sc-1xcs6mc-0.fJANQ > div:nth-child(1) > button"))
