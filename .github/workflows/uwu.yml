@@ -24,4 +24,4 @@ jobs:
       env:
           MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
-      run: xvfb-run chromium https://www.twitch.tv/foxyman361
+      run: node vv.js
