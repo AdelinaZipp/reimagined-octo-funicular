@@ -2,7 +2,7 @@ import nodriver as uc
 import time
 import sys
 import asyncio
-def main():
+async def main():
 
 
     browser = await uc.start()
