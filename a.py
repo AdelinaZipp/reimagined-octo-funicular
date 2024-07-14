@@ -5,7 +5,7 @@ import asyncio
 async def main():
 
 
-    browser = await uc.start()
+    browser = await uc.start(no_sandbox=True)
 
     await time.sleep(5)
     await browser.get('https://www.twitch.tv/')
