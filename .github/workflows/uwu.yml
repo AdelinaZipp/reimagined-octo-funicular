@@ -6,7 +6,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -24,4 +24,4 @@ jobs:
       env:
           MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
-      run: chromium https://twitch.tv/notfischz
+      run: xvfb-run chromium https://twitch.tv/notfischz
