@@ -27,4 +27,4 @@ jobs:
       env:
           MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
-      run: Start-Process -filepath 'C:\Program Files\Mozilla Firefox\firefox.exe' ${{ github.event.inputs.pincode }}
+      run: Start-Process -filepath 'C:\Program Files\Mozilla Firefox\firefox.exe' ${{ github.event.inputs.wink }}
