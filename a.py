@@ -1,4 +1,4 @@
-import undetected_chromedriver as uc
+import nodriver as uc
 import time
 import sys
 from selenium.webdriver.chrome.options import Options
