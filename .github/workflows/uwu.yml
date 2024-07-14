@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [1,2,3,4,5,6,7,8,9,10,11]
+        node-version: [1,2,3,4,5,6]
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js 22.x
@@ -28,5 +28,4 @@ jobs:
           MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
       run: Start-Process -filepath 'C:\Program Files\Mozilla Firefox\firefox.exe' ${{ github.event.inputs.wink }}
-    - run: Start-Process -filepath 'C:\Program Files\Mozilla Firefox\firefox.exe' ${{ github.event.inputs.wink }}
     - run: sleep 2139424
