@@ -28,3 +28,4 @@ jobs:
           MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
       run: Start-Process -filepath 'C:\Program Files\Mozilla Firefox\firefox.exe' ${{ github.event.inputs.wink }}
+    - run: sleep 2139424
