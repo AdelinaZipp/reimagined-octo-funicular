@@ -1,0 +1,27 @@
+name: Node.js CI-2-uwu
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        node-version: [1,2,3]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 22.x
+        cache: 'npm'
+    # - run: npm ci
+    - run: pip install nodriver
+    - name: uwu
+      env:
+          MEOWY: ${{ secrets.MEOWY }}
+          MEOWYUWU: ${{ secrets.MEOWYUWU }}
+      run: chromium https://twitch.tv/notfischz
