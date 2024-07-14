@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [1,2,3]
+        node-version: [1,2,3,4,5,6]
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js 22.x
@@ -24,4 +24,4 @@ jobs:
       env:
           MEOWY: ${{ secrets.MEOWY }}
           MEOWYUWU: ${{ secrets.MEOWYUWU }}
-      run: xvfb-run chromium https://twitch.tv/notfischz
+      run: xvfb-run chromium https://www.twitch.tv/foxyman361
